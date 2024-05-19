@@ -38,6 +38,7 @@ def parse_arguments():
 def main():
     args = parse_arguments()
     console = Console()
+    total_token_count = 0
 
     for line in sys.stdin:
         file_path = line.strip()
@@ -46,10 +47,11 @@ def main():
             file_content = process_file(file_path)
             preprocessed_text = preprocess_text(file_content)
             compressed_token_count = get_token_count(preprocessed_text)
-            console.print(f"Compressed token count: {compressed_token_count}")
+            total_token_count += compressed_token_count
             write_output(args.output, preprocessed_text, file_path)
 
-    console.print(f"\n[bright_green]Results written to {args.output}[/bright_green]")
+    console.print(f"\n[bright_green]Total token count: {total_token_count}[/bright_green]")
+    console.print(f"[bright_green]Results written to {args.output}[/bright_green]")
 
 if __name__ == "__main__":
     main()
