@@ -22,10 +22,10 @@ def get_token_count(text):
     tokens = enc.encode(text, disallowed_special=disallowed_special)
     return len(tokens)
 
-def write_output(output_file, preprocessed_text):
-    with open(output_file, "w", encoding="utf-8") as f:
-        header = f"# {'-' * 3}\n"
-        header += f"# Filename: {output_file}\n"
+def write_output(output_file, preprocessed_text, file_path):
+    with open(output_file, "a", encoding="utf-8") as f:
+        header = f"\n# {'-' * 3}\n"
+        header += f"# Filename: {file_path}\n"
         header += f"# {'-' * 3}\n\n"
         full_text = header + preprocessed_text
         f.write(full_text)
@@ -38,19 +38,17 @@ def parse_arguments():
 def main():
     args = parse_arguments()
     console = Console()
-    full_text = ""
 
     for line in sys.stdin:
         file_path = line.strip()
         if file_path:
             console.print(f"Processing file: {file_path}")
             file_content = process_file(file_path)
-            full_text += file_content + "\n\n"
-
-    preprocessed_text = preprocess_text(full_text)
+    preprocessed_text = preprocess_text(file_content)
     compressed_token_count = get_token_count(preprocessed_text)
     console.print(f"Compressed token count: {compressed_token_count}")
-    write_output(args.output, preprocessed_text)
+    write_output(args.output, preprocessed_text, file_path)
+
     console.print(f"\n[bright_green]Results written to {args.output}[/bright_green]")
 
 if __name__ == "__main__":
