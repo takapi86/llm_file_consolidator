@@ -35,10 +35,15 @@ def parse_arguments():
     parser.add_argument('-o', '--output', type=str, required=True, help="Output file to write results to.")
     return parser.parse_args()
 
+def write_output(output_file, full_text):
+    with open(output_file, "w", encoding="utf-8") as f:
+        f.write(full_text)
+
 def main():
     args = parse_arguments()
     console = Console()
     total_token_count = 0
+    full_text = ""
 
     for line in sys.stdin:
         file_path = line.strip()
@@ -48,8 +53,12 @@ def main():
             preprocessed_text = preprocess_text(file_content)
             compressed_token_count = get_token_count(preprocessed_text)
             total_token_count += compressed_token_count
-            write_output(args.output, preprocessed_text, file_path)
+            header = f"\n# {'-' * 3}\n"
+            header += f"# Filename: {file_path}\n"
+            header += f"# {'-' * 3}\n\n"
+            full_text += header + preprocessed_text
 
+    write_output(args.output, full_text)
     console.print(f"\n[bright_green]Total token count: {total_token_count}[/bright_green]")
     console.print(f"[bright_green]Results written to {args.output}[/bright_green]")
 
