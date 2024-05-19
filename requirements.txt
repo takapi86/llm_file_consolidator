@@ -1,0 +1,15 @@
+certifi==2024.2.2
+charset-normalizer==3.3.2
+click==8.1.7
+idna==3.7
+joblib==1.4.2
+markdown-it-py==3.0.0
+mdurl==0.1.2
+nltk==3.8.1
+Pygments==2.18.0
+regex==2024.5.10
+requests==2.31.0
+rich==13.7.1
+tiktoken==0.7.0
+tqdm==4.66.4
+urllib3==2.2.1
