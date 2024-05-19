@@ -44,10 +44,10 @@ def main():
         if file_path:
             console.print(f"Processing file: {file_path}")
             file_content = process_file(file_path)
-    preprocessed_text = preprocess_text(file_content)
-    compressed_token_count = get_token_count(preprocessed_text)
-    console.print(f"Compressed token count: {compressed_token_count}")
-    write_output(args.output, preprocessed_text, file_path)
+            preprocessed_text = preprocess_text(file_content)
+            compressed_token_count = get_token_count(preprocessed_text)
+            console.print(f"Compressed token count: {compressed_token_count}")
+            write_output(args.output, preprocessed_text, file_path)
 
     console.print(f"\n[bright_green]Results written to {args.output}[/bright_green]")
 
