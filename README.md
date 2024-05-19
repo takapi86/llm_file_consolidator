@@ -15,7 +15,7 @@
 - 必要なパッケージをインストール:
 
 ```sh
-pip install tiktoken rich
+pip install -r requirements.txt
 ```
 
 ### 実行方法
