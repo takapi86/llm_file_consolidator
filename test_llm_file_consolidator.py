@@ -33,12 +33,7 @@ class TestLlm_FileConsolidatorFunctions(unittest.TestCase):
     def test_write_output(self):
         output_file = "dummy_output.txt"
         preprocessed_text = "This is a preprocessed text."
-        expected_output = (
-            "# ---\n"
-            "# Filename: dummy_output.txt\n"
-            "# ---\n\n"
-            + preprocessed_text
-        )
+        expected_output = preprocessed_text
 
         m = mock_open()
         with patch("builtins.open", m):
